@@ -3,7 +3,12 @@ ITDNS is a PowerDNS backend server for etcd stored records listening on a unix s
 service and caches them into memory for fast serving. Thanks to etcd watchers the program can keep the records up to date
 
 ## Configuration
-*To be added in a future release*
+Configuration via ITDNS is only done by envoirement variables.  
+To enable etcd v2 set `ITDNS_ETCD2_ENDPOINTS` to a comma seperated list of endpoints for etcd v2.  
+Configuration of etcd v3 allows more options:
+* `ITDNS_ETCD3_ENDPOINTS` works the same as on v2
+* `ITDNS_ETCD3_USERNAME` and `ITDNS_ETCD3_USERNAME` enable basic auth on etcd
+* `ITDNS_ETCD3_CA` is the path to the CA certificate used by the etcd endpoints
 
 ## How to set up
 *soon to be added*
