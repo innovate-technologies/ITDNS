@@ -8,6 +8,7 @@ import (
 
 	etcdClient "github.com/coreos/etcd/client"
 	"github.com/innovate-technologies/ITDNS/cache"
+	"github.com/innovate-technologies/ITDNS/config"
 	"golang.org/x/net/context"
 )
 
@@ -26,12 +27,14 @@ type Etcd2Client struct {
 	cache   *cache.Cache
 }
 
+var cfg = config.GetConfig()
+
 func New(cache *cache.Cache) Etcd2Client {
 	returnObject := Etcd2Client{}
 	returnObject.cache = cache
 
 	c, err := etcdClient.New(etcdClient.Config{
-		Endpoints:               []string{"http://127.0.0.1:2379"},
+		Endpoints:               cfg.Etcd2Config.Endpoints,
 		Transport:               etcdClient.DefaultTransport,
 		HeaderTimeoutPerRequest: 10 * time.Second,
 	})

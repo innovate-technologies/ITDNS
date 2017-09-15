@@ -4,20 +4,35 @@ import (
 	"strings"
 
 	"github.com/innovate-technologies/ITDNS/cache"
+	"github.com/innovate-technologies/ITDNS/config"
 	"github.com/innovate-technologies/ITDNS/etcd2"
+	"github.com/innovate-technologies/ITDNS/etcd3"
 )
 
 // Client lets you look up and cache DNS records
 type Client struct {
-	cache cache.Cache
-	etcd2 etcd2.Etcd2Client
+	cache    cache.Cache
+	etcd2    etcd2.Etcd2Client
+	etcd3    etcd3.Client
+	hasEtcd2 bool
+	hasEtcd3 bool
 }
+
+var cfg = config.GetConfig()
 
 // New gived a new Lookup Client
 func New() Client {
 	returnObject := Client{}
 	returnObject.cache = cache.New()
-	returnObject.etcd2 = etcd2.New(&returnObject.cache)
+
+	if len(cfg.Etcd2Config.Endpoints) > 0 {
+		returnObject.etcd2 = etcd2.New(&returnObject.cache)
+		returnObject.hasEtcd2 = true
+	}
+	if len(cfg.Etcd3Config.Endpoints) > 0 {
+		returnObject.etcd3 = etcd3.New(&returnObject.cache)
+		returnObject.hasEtcd3 = true
+	}
 
 	// initialize
 	returnObject.createCache()
@@ -28,13 +43,24 @@ func New() Client {
 
 // createCache loads in all records into the cache for first usage
 func (c *Client) createCache() {
-	c.etcd2.CreateCache()
-	// add etcd3 here to make sure it overrides
+	if c.hasEtcd2 {
+		c.etcd2.CreateCache()
+	}
+
+	// always execute after v2 so it overwrites the v2 records!
+	if c.hasEtcd3 {
+		c.etcd3.CreateCache()
+	}
 }
 
 // watch allows to run etcd watchers to update the cache
 func (c *Client) watch() {
-	go c.etcd2.Watch()
+	if c.hasEtcd2 {
+		go c.etcd2.Watch()
+	}
+	if c.hasEtcd3 {
+		go c.etcd3.Watch()
+	}
 }
 
 // LookUp gives back all known records of a certain type for a domain
