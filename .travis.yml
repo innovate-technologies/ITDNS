@@ -5,4 +5,6 @@ go:
 
 script:
   - go test ./...
-  - go build ./
+  - go build -v ./ && mv ITDNS ITDNS-linux-amd64
+  - GOARCH=arm go build -v ./ && mv ITDNS ITDNS-linux-arm.
+  - GOARCH=arm64 go build -v ./ && mv ITDNS ITDNS-linux-arm64
