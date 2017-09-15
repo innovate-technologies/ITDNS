@@ -13,10 +13,8 @@ Configuration of etcd v3 allows more options:
 ## How to set up
 *soon to be added*
 
-## Etcdv2 data structure
+## Etcd data structure
 `/DNS/${domain}/${type}` with a JSON value of `[{value:"127.0.0.1", ttl:100}]`  
 Note that the TTL is an integer and the value is always a string, for an MX record the `${priority} ${hostname}` format is used.  
 The JSON array allows to set multiple records of a same type.
 
-## Etcdv3 data structure
-Probably the same? to be decided
