@@ -14,8 +14,8 @@ deploy:
     secure: O+LXSrW4RAp1mQ3pabmdQBXIwU3VoCYiI4MdLnU4TflF1sLaY68thsp1n6qvGr6v2mNCQGLRqtFuosZ3r4ycUBMj1pDGdhGae2RVa/7RqlWz8eAuMPbDWuENSrwZw5xUgJbpVGkryPwlDQ2Kqsp2O4rRlZhTfcS4vc3NNuVSSI1ohrx6uCil6jdDuNCGkyopF+WS9m/b0a1VMAMfLZoGWkVuBIZ3J57lU0DoinSmKa/XkW1sH82d6Vjp9qKr9OdB9zGvvY6wNsSAxmDyN/dcKlMJHHAJp2Wbb/Ihl1EEutGbq1njQNIGNQpn7E+47bUTpRFHdZPh0MFgWfEjuShrG/G1sGAcGY0xlqNxSDtz5fqUzNQngFbYkqAyjWNKW7I2otV1sBhbVGms3chdgXzTDpgcSys5/ilGVQazy0/AVdo/1lT8vZbd5rgAoqFhGuAYFrURQKS/33bVDR6C1OhjVUac+sQYZP/o7YwhLu5nqDSrjGWnZe1AagmOfNMQ38Li/27nTTX2gwHhf+BNKSFaCz5hmLgZkr8KaYrKMHD4DG3bwvJ3RxC3wlJW8Sb9zLPPeAVx0Fd3ihCZl4uIt3IsB3hgv3gt2Y/wuYp7tL3X6gzkpbZgakBD1PKoc7FaiGIkrBC/pTz9poBtLfCh3s0DpHn6zG+10HAZGO1vWImCKbI=
   file: 
     - ITDNS-linux-amd64
-    - ITDNS ITDNS-linux-arm
-    - ITDNS ITDNS-linux-arm64
+    - ITDNS-linux-arm
+    - ITDNS-linux-arm64
   on:
     repo: innovate-technologies/ITDNS
     branch: "master"
