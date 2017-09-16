@@ -91,7 +91,7 @@ func (c *Client) CreateCache() {
 
 // Watch watches for new records to add them to the cache
 func (c *Client) Watch() {
-	chans := c.etcdAPI.Watch(context.Background(), "DNS", etcd.WithPrefix())
+	chans := c.etcdAPI.Watch(context.Background(), "/DNS/", etcd.WithPrefix())
 	for resp := range chans {
 		for _, ev := range resp.Events {
 			if ev.IsCreate() || ev.IsModify() {
