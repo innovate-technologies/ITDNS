@@ -65,7 +65,7 @@ func (c *Client) watch() {
 		go c.etcd2.Watch()
 	}
 	if c.hasEtcd3 {
-		fmt.Println("Watching Etcd v2")
+		fmt.Println("Watching Etcd v3")
 		go c.etcd3.Watch()
 	}
 }
