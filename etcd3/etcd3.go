@@ -76,7 +76,6 @@ func (c *Client) CreateCache() {
 	recordsToCache := map[string][]cache.Record{}
 
 	for _, kv := range res.Kvs {
-		fmt.Println(string(kv.Key))
 		domainParts := strings.Split(string(kv.Key), "/")
 		domainName := domainParts[2]
 		if _, ok := recordsToCache[domainName]; !ok {
@@ -95,7 +94,6 @@ func (c *Client) Watch() {
 	chans := c.etcdAPI.Watch(context.Background(), "/DNS/", etcd.WithPrefix())
 	for resp := range chans {
 		for _, ev := range resp.Events {
-			fmt.Println(string(ev.Kv.Key))
 			if ev.IsCreate() || ev.IsModify() {
 				c.addToCache(ev.Kv, 0)
 			}
@@ -143,7 +141,6 @@ func parseRecords(record *mvccpb.KeyValue) []cache.Record {
 	} else {
 		etcdRecords = []etcdRecord{}
 		json.Unmarshal(record.Value, &etcdRecords)
-		fmt.Println(etcdRecords)
 	}
 
 	recordsToCache := []cache.Record{}
