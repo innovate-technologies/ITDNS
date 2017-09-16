@@ -47,11 +47,13 @@ func New() Client {
 // createCache loads in all records into the cache for first usage
 func (c *Client) createCache() {
 	if c.hasEtcd2 {
+		fmt.Println("Building Etcd v2 cache")
 		c.etcd2.CreateCache()
 	}
 
 	// always execute after v2 so it overwrites the v2 records!
 	if c.hasEtcd3 {
+		fmt.Println("Building Etcd v3 cache")
 		c.etcd3.CreateCache()
 	}
 }
@@ -59,9 +61,11 @@ func (c *Client) createCache() {
 // watch allows to run etcd watchers to update the cache
 func (c *Client) watch() {
 	if c.hasEtcd2 {
+		fmt.Println("Watching Etcd v2")
 		go c.etcd2.Watch()
 	}
 	if c.hasEtcd3 {
+		fmt.Println("Watching Etcd v2")
 		go c.etcd3.Watch()
 	}
 }
