@@ -1,6 +1,7 @@
 package lookup
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/innovate-technologies/ITDNS/cache"
@@ -26,10 +27,12 @@ func New() Client {
 	returnObject.cache = cache.New()
 
 	if len(cfg.Etcd2Config.Endpoints) > 0 {
+		fmt.Println("Enabling Etcd v2")
 		returnObject.etcd2 = etcd2.New(&returnObject.cache)
 		returnObject.hasEtcd2 = true
 	}
 	if len(cfg.Etcd3Config.Endpoints) > 0 {
+		fmt.Println("Enabling Etcd v3")
 		returnObject.etcd3 = etcd3.New(&returnObject.cache)
 		returnObject.hasEtcd3 = true
 	}
