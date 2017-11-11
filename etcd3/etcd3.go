@@ -103,7 +103,7 @@ func (c *Client) Watch() {
 
 func (c *Client) addToCache(record *mvccpb.KeyValue, retry int) {
 	pathParts := strings.Split(string(record.Key), "/")
-	res, err := c.etcdAPI.Get(context.Background(), strings.Join(pathParts[:3], "/"), etcd.WithPrefix())
+	res, err := c.etcdAPI.Get(context.Background(), strings.Join(pathParts[:3], "/")+"/", etcd.WithPrefix())
 	if err != nil {
 		time.Sleep(time.Second)
 		retry++
