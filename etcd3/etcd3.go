@@ -99,6 +99,7 @@ func (c *Client) Watch() {
 			}
 		}
 	}
+	c.Watch()
 }
 
 func (c *Client) addToCache(record *mvccpb.KeyValue, retry int) {
