@@ -93,6 +93,9 @@ func (c *Client) CreateCache() {
 func (c *Client) Watch() {
 	chans := c.etcdAPI.Watch(context.Background(), "/DNS/", etcd.WithPrefix())
 	for resp := range chans {
+		if resp.Canceled {
+			break // error found
+		}
 		for _, ev := range resp.Events {
 			if ev.IsCreate() || ev.IsModify() {
 				c.addToCache(ev.Kv, 0)
