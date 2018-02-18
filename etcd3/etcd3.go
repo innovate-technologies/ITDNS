@@ -7,9 +7,10 @@ import (
 	"strings"
 	"time"
 
-	etcd "github.com/coreos/etcd/clientv3"
-	"github.com/coreos/etcd/mvcc/mvccpb"
-	"github.com/coreos/etcd/pkg/transport"
+	etcd "gopkg.in/coreos/etcd.v3/clientv3"
+	"gopkg.in/coreos/etcd.v3/mvcc/mvccpb"
+	"gopkg.in/coreos/etcd.v3/pkg/transport"
+
 	"github.com/innovate-technologies/ITDNS/cache"
 	"github.com/innovate-technologies/ITDNS/config"
 	"golang.org/x/net/context"
