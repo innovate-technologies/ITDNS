@@ -6,12 +6,14 @@
   packages = [
     "auth/authpb",
     "client",
+    "clientv3",
     "etcdserver/api/v3rpc/rpctypes",
     "etcdserver/etcdserverpb",
     "mvcc/mvccpb",
     "pkg/pathutil",
     "pkg/srv",
     "pkg/tlsutil",
+    "pkg/transport",
     "pkg/types",
     "version"
   ]
@@ -51,6 +53,24 @@
   ]
   revision = "925541529c1fa6821df4e44ce2723319eb2be768"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/inconshreveable/mousetrap"
+  packages = ["."]
+  revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
+  version = "v1.0"
+
+[[projects]]
+  name = "github.com/spf13/cobra"
+  packages = ["."]
+  revision = "a1f051bc3eba734da4772d60e2d677f47cf93ef4"
+  version = "v0.0.2"
+
+[[projects]]
+  name = "github.com/spf13/pflag"
+  packages = ["."]
+  revision = "583c0c0531f06d5278b7d917446061adc344b5cd"
+  version = "v1.0.1"
 
 [[projects]]
   name = "github.com/ugorji/go"
@@ -130,19 +150,9 @@
   revision = "8e4536a86ab602859c20df5ebfd0bd4228d08655"
   version = "v1.10.0"
 
-[[projects]]
-  name = "gopkg.in/coreos/etcd.v3"
-  packages = [
-    "clientv3",
-    "mvcc/mvccpb",
-    "pkg/transport"
-  ]
-  revision = "28f3f26c0e303392556035b694f75768d449d33d"
-  version = "v3.3.1"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e80ce6c4f6bb446cfe62ddf35299c91b99a8aa0f75dd5ec1c0f103b58b115c12"
+  inputs-digest = "c33498950dea19ba4c5dde384c2b33b487d03ce3d58865196ecef26df31a57bf"
   solver-name = "gps-cdcl"
   solver-version = 1
