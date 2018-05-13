@@ -1,0 +1,145 @@
+builds:
+  - binary: itdns
+    main: ./main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
+  - binary: itdnsctl
+    main: ./itdnsctl/main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
+dockers:
+  - goos: linux
+    goarch: amd64
+    goarm: ''
+    binary: itdns
+    image: innovate/itdns
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "amd64-{{ .Tag }}"
+    - "amd64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "amd64-v{{ .Major }}"
+    - amd64-latest
+  - goos: linux
+    goarch: amd64
+    goarm: ''
+    binary: itdnsctl
+    image: innovate/itdnsctl
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "amd64-{{ .Tag }}"
+    - "amd64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "amd64-v{{ .Major }}"
+    - amd64-latest
+
+  - goos: linux
+    goarch: arm64
+    goarm: ''
+    binary: itdns
+    image: innovate/itdns
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "arm64-{{ .Tag }}"
+    - "arm64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "arm64-v{{ .Major }}"
+    - arm64-latest
+  - goos: linux
+    goarch: arm64
+    goarm: ''
+    binary: itdnsctl
+    image: innovate/itdnsctl
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "arm64-{{ .Tag }}"
+    - "arm64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "arm64-v{{ .Major }}"
+    - arm64-latest
+
+
+  - goos: linux
+    goarch: arm
+    goarm: '6'
+    binary: itdns
+    image: innovate/itdns
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "armhf-{{ .Tag }}"
+    - "armhf-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "armhf-v{{ .Major }}"
+    - armhf-latest
+  - goos: linux
+    goarch: arm
+    goarm: '6'
+    binary: itdnsctl
+    image: innovate/itdnsctl
+    skip_push: false
+    dockerfile: Dockerfile
+    # Template of the docker tag. Defaults to `{{ .Version }}`.
+    # Other allowed fields are:
+    # - `.Commint`
+    # - `.Tag`
+    # - `.Major`
+    # - `.Minor`
+    # - `.Patch`
+    # - `.Env.VARIABLE_NAME`
+    tag_templates:
+    - "armhf-{{ .Tag }}"
+    - "armhf-{{ .Tag }}-{{ .Env.GO_VERSION }}"
+    - "armhf-v{{ .Major }}"
+    - armhf-latest
