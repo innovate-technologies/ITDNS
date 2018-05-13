@@ -13,9 +13,6 @@ services:
 
 script:
 - go test ./...
-- go build -v ./ && mv ITDNS ITDNS-linux-amd64
-- GOARCH=arm go build -v ./ && mv ITDNS ITDNS-linux-arm
-- GOARCH=arm64 go build -v ./ && mv ITDNS ITDNS-linux-arm64
 
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
