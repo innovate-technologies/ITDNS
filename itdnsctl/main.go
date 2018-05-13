@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/innovate-technologies/ITDNS/util/cmd"
+	"github.com/innovate-technologies/ITDNS/itdnsctl/cmd"
 )
 
 func main() {
