@@ -45,7 +45,7 @@ dockers:
     binary: itdnsctl
     image: innovate/itdnsctl
     skip_push: false
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.itdnsctl
     # Template of the docker tag. Defaults to `{{ .Version }}`.
     # Other allowed fields are:
     # - `.Commint`
@@ -84,7 +84,7 @@ dockers:
     binary: itdnsctl
     image: innovate/itdnsctl
     skip_push: false
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.itdnsctl
     # Template of the docker tag. Defaults to `{{ .Version }}`.
     # Other allowed fields are:
     # - `.Commint`
@@ -124,7 +124,7 @@ dockers:
     binary: itdnsctl
     image: innovate/itdnsctl
     skip_push: false
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.itdnsctl
     # Template of the docker tag. Defaults to `{{ .Version }}`.
     # Other allowed fields are:
     # - `.Commint`
