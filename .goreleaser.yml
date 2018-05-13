@@ -37,7 +37,6 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "amd64-{{ .Tag }}"
-    - "amd64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "amd64-v{{ .Major }}"
     - amd64-latest
   - goos: linux
@@ -57,7 +56,6 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "amd64-{{ .Tag }}"
-    - "amd64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "amd64-v{{ .Major }}"
     - amd64-latest
 
@@ -78,7 +76,6 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "arm64-{{ .Tag }}"
-    - "arm64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "arm64-v{{ .Major }}"
     - arm64-latest
   - goos: linux
@@ -98,7 +95,6 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "arm64-{{ .Tag }}"
-    - "arm64-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "arm64-v{{ .Major }}"
     - arm64-latest
 
@@ -120,7 +116,6 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "armhf-{{ .Tag }}"
-    - "armhf-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "armhf-v{{ .Major }}"
     - armhf-latest
   - goos: linux
@@ -140,6 +135,5 @@ dockers:
     # - `.Env.VARIABLE_NAME`
     tag_templates:
     - "armhf-{{ .Tag }}"
-    - "armhf-{{ .Tag }}-{{ .Env.GO_VERSION }}"
     - "armhf-v{{ .Major }}"
     - armhf-latest
