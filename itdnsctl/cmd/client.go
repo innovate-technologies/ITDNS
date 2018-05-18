@@ -30,8 +30,13 @@ func newClientFromEnv() (*etcd.Client, error) {
 		config.TLS = tlsConfig
 	}
 
-	setEnv("ETCDCTL_USERNAME", &config.Username)
-	setEnv("ETCDCTL_PASSWORD", &config.Password)
+	if os.Getenv("ETCDCTL_USER") != "" {
+		parts := strings.Split(os.Getenv("ETCDCTL_USER"), ":")
+		config.Username = parts[0]
+		if len(parts) > 1 {
+			config.Password = strings.Join(parts[1:], ":")
+		}
+	}
 
 	return etcd.New(config)
 }
