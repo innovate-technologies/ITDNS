@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"strings"
@@ -13,6 +14,11 @@ type addOptions struct {
 	Type   string
 	TTL    int64
 	DryRun bool
+}
+
+type record struct {
+	Value string `json:"value"`
+	TTL   int64  `json:"ttl"`
 }
 
 // NewAddCmd generates the add command
@@ -37,13 +43,32 @@ func (a *addOptions) RunE(cmd *cobra.Command, args []string) error {
 		return errors.New("Needs at least 2 argumants: name and value")
 	}
 
+	value := []record{}
+
 	// prepare content
 	key := fmt.Sprintf("/DNS/%s/%s", args[0], strings.ToUpper(a.Type))
-	value := fmt.Sprintf(`{"value": "%s", "ttl": %d}`, args[1], a.TTL)
+	value = append(value, record{
+		Value: args[1],
+		TTL:   a.TTL,
+	})
+	if len(args) > 2 {
+		for _, val := range args[2:] {
+			value = append(value, record{
+				Value: val,
+				TTL:   a.TTL,
+			})
+		}
+	}
+
+	valueBytes, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	valueString := string(valueBytes)
 
 	if a.DryRun {
 		fmt.Println(key)
-		fmt.Println(value)
+		fmt.Println(valueString)
 		return nil
 	}
 
@@ -52,6 +77,6 @@ func (a *addOptions) RunE(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	_, err = client.Put(context.Background(), key, value)
+	_, err = client.Put(context.Background(), key, valueString)
 	return err
 }
