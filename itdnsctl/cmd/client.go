@@ -19,10 +19,11 @@ func newClientFromEnv() (*etcd.Client, error) {
 
 	if os.Getenv("ETCDCTL_CACERT") != "" {
 		// TLS is set
-		tlsInfo := transport.TLSInfo{}
-		setEnv("ETCDCTL_CACERT", &tlsInfo.TrustedCAFile)
-		setEnv("ETCDCTL_CERT", &tlsInfo.CertFile)
-		setEnv("ETCDCTL_KEY", &tlsInfo.KeyFile)
+		tlsInfo := transport.TLSInfo{
+			TrustedCAFile: os.Getenv("ETCDCTL_CACERT"),
+			CertFile:      os.Getenv("ETCDCTL_CERT"),
+			KeyFile:       os.Getenv("ETCDCTL_KEY"),
+		}
 		tlsConfig, err := tlsInfo.ClientConfig()
 		if err != nil {
 			return nil, err
@@ -39,10 +40,4 @@ func newClientFromEnv() (*etcd.Client, error) {
 	}
 
 	return etcd.New(config)
-}
-
-func setEnv(env string, to *string) {
-	if os.Getenv(env) != "" {
-
-	}
 }
