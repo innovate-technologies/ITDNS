@@ -86,7 +86,9 @@ func (c *Client) LookUp(qtype, qname string) []cache.Record {
 	results := []cache.Record{}
 	for _, record := range records {
 		if record.Qtype == qtype || qtype == "ANY" {
-			record.Qname = qname // back to WeIrDCaSE
+			if record.Qtype != "SOA" {
+				record.Qname = qname // back to WeIrDCaSE
+			}
 			results = append(results, record)
 		}
 	}
@@ -109,11 +111,13 @@ func (c *Client) lookUpLegacyInternal(qname string) []cache.Record {
 }
 
 func (c *Client) sendSOA(qname string) []cache.Record {
+	fmt.Printf("SOA FOR %s", qname)
 	qnameParts := strings.Split(qname, ".")
+
 	if len(qnameParts) < 2 {
-		// invalid domain
 		return []cache.Record{}
 	}
+
 	record := cache.Record{
 		Qname:    strings.Join(qnameParts[len(qnameParts)-2:], "."),
 		Qtype:    "SOA",
@@ -121,5 +125,6 @@ func (c *Client) sendSOA(qname string) []cache.Record {
 		Content:  "dns-par.shoutca.st. maartje.eyskens.me. 2016050400 7200 1800 1209600 7200", // to do: change this
 		DomainID: -1,
 	}
+
 	return []cache.Record{record}
 }
