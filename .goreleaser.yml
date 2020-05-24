@@ -1,6 +1,8 @@
 builds:
   - binary: itdns
-    main: ./main.go
+    main: ./
+    env:
+      - CGO_ENABLED=0
     goos:
       - windows
       - darwin
@@ -10,7 +12,7 @@ builds:
       - arm
       - arm64
   - binary: itdnsctl
-    main: ./itdnsctl/main.go
+    main: ./itdnsctl/
     goos:
       - windows
       - darwin
@@ -23,27 +25,19 @@ dockers:
   - goos: linux
     goarch: amd64
     goarm: ''
-    binary: itdns
-    image: innovate/itdns
+    binaries:
+      - itdns
     skip_push: false
     dockerfile: Dockerfile
-    # Template of the docker tag. Defaults to `{{ .Version }}`.
-    # Other allowed fields are:
-    # - `.Commint`
-    # - `.Tag`
-    # - `.Major`
-    # - `.Minor`
-    # - `.Patch`
-    # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "amd64-{{ .Tag }}"
-    - "amd64-v{{ .Major }}"
-    - amd64-latest
+    image_templates:
+    - "innovate/itdns:amd64-{{ .Tag }}"
+    - "innovate/itdns:amd64-v{{ .Major }}"
+    - innovate/itdns:amd64-latest
   - goos: linux
     goarch: amd64
     goarm: ''
-    binary: itdnsctl
-    image: innovate/itdnsctl
+    binaries:
+      - itdnsctl
     skip_push: false
     dockerfile: Dockerfile.itdnsctl
     # Template of the docker tag. Defaults to `{{ .Version }}`.
@@ -54,86 +48,54 @@ dockers:
     # - `.Minor`
     # - `.Patch`
     # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "amd64-{{ .Tag }}"
-    - "amd64-v{{ .Major }}"
-    - amd64-latest
+    image_templates:
+    - "innovate/itdnsctl:amd64-{{ .Tag }}"
+    - "innovate/itdnsctl:amd64-v{{ .Major }}"
+    - innovate/itdnsctl:amd64-latest
 
   - goos: linux
     goarch: arm64
     goarm: ''
-    binary: itdns
-    image: innovate/itdns
+    binaries:
+      - itdns
     skip_push: false
     dockerfile: Dockerfile
-    # Template of the docker tag. Defaults to `{{ .Version }}`.
-    # Other allowed fields are:
-    # - `.Commint`
-    # - `.Tag`
-    # - `.Major`
-    # - `.Minor`
-    # - `.Patch`
-    # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "arm64-{{ .Tag }}"
-    - "arm64-v{{ .Major }}"
-    - arm64-latest
+    image_templates:
+    - "innovate/itdnsctl:arm64-{{ .Tag }}"
+    - "innovate/itdnsctl:arm64-v{{ .Major }}"
+    - innovate/itdnsctl:arm64-latest
   - goos: linux
     goarch: arm64
     goarm: ''
-    binary: itdnsctl
-    image: innovate/itdnsctl
+    binaries:
+      - itdnsctl
     skip_push: false
     dockerfile: Dockerfile.itdnsctl
-    # Template of the docker tag. Defaults to `{{ .Version }}`.
-    # Other allowed fields are:
-    # - `.Commint`
-    # - `.Tag`
-    # - `.Major`
-    # - `.Minor`
-    # - `.Patch`
-    # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "arm64-{{ .Tag }}"
-    - "arm64-v{{ .Major }}"
-    - arm64-latest
+    image_templates:
+    - "innovate/itdnsctl:arm64-{{ .Tag }}"
+    - "innovate/itdnsctl:arm64-v{{ .Major }}"
+    - innovate/itdnsctl:arm64-latest
 
 
   - goos: linux
     goarch: arm
     goarm: '6'
-    binary: itdns
-    image: innovate/itdns
+    binaries:
+      - itdns
     skip_push: false
     dockerfile: Dockerfile
-    # Template of the docker tag. Defaults to `{{ .Version }}`.
-    # Other allowed fields are:
-    # - `.Commint`
-    # - `.Tag`
-    # - `.Major`
-    # - `.Minor`
-    # - `.Patch`
-    # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "armhf-{{ .Tag }}"
-    - "armhf-v{{ .Major }}"
-    - armhf-latest
+    image_templates:
+    - "innovate/itdnsctl:armhf-{{ .Tag }}"
+    - "innovate/itdnsctl:armhf-v{{ .Major }}"
+    - innovate/itdnsctl:armhf-latest
   - goos: linux
     goarch: arm
     goarm: '6'
-    binary: itdnsctl
-    image: innovate/itdnsctl
+    binaries:
+      - itdnsctl
     skip_push: false
     dockerfile: Dockerfile.itdnsctl
-    # Template of the docker tag. Defaults to `{{ .Version }}`.
-    # Other allowed fields are:
-    # - `.Commint`
-    # - `.Tag`
-    # - `.Major`
-    # - `.Minor`
-    # - `.Patch`
-    # - `.Env.VARIABLE_NAME`
-    tag_templates:
-    - "armhf-{{ .Tag }}"
-    - "armhf-v{{ .Major }}"
-    - armhf-latest
+    image_templates:
+    - "innovate/itdnsctl:armhf-{{ .Tag }}"
+    - "innovate/itdnsctl:armhf-v{{ .Major }}"
+    - innovate/itdnsctl:armhf-latest
