@@ -109,6 +109,10 @@ func (c *Client) lookUpLegacyInternal(qname string) []cache.Record {
 }
 
 func (c *Client) sendSOA(qname string) []cache.Record {
+	if len(strings.Split(qname, ".")) != 2 {
+		// not on the root domain skipping
+		return []cache.Record{}
+	}
 	record := cache.Record{
 		Qname:    qname,
 		Qtype:    "SOA",
